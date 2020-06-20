@@ -23,12 +23,11 @@ class IParkingSlotRepositoryTest extends AbstractTest
         var e20kwSlots = repository.findAllByTypeAndAvailableTrue(ParkingSlotTypeEnum.ELECTRIC_20KW);
         assertAll(
                 () -> assertNotNull(e20kwSlots),
-                () -> assertEquals(1, e20kwSlots.size()));
+                () -> assertEquals(3, e20kwSlots.size()));
 
         var e50kwSlots = repository.findAllByTypeAndAvailableTrue(ParkingSlotTypeEnum.ELECTRIC_50KW);
         assertAll(
                 () -> assertNotNull(e50kwSlots),
-                () -> assertTrue(e50kwSlots.isEmpty()));
-
+                () -> assertEquals(3, e50kwSlots.size()));
     }
 }
