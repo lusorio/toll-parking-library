@@ -69,6 +69,10 @@ A toll parking lor provides several types of parking slots to its users. It has 
     
     /api/out
     
+ A typicall call to the API should be something similar to
+ 
+ [http://localhost:8080/in?vehicleId=AAA-111-ZZ]()
+ 
  Both accept a single parameter which is a license plate number (vehicleId) which may contain an arbitrary string.
  Documentation on the API usage can be consulted in the Swagger documentation
  
