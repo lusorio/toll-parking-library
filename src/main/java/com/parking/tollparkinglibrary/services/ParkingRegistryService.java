@@ -1,7 +1,6 @@
 package com.parking.tollparkinglibrary.services;
 
 import com.parking.tollparkinglibrary.exceptions.BusinessException;
-import com.parking.tollparkinglibrary.exceptions.NoParkingSlotAvailableException;
 import com.parking.tollparkinglibrary.exceptions.NoSuchRegistryException;
 import com.parking.tollparkinglibrary.models.ParkingRegistry;
 import com.parking.tollparkinglibrary.models.ParkingSlot;
@@ -39,7 +38,7 @@ public class ParkingRegistryService implements IParkingRegistryService
     {
 
         var registry = parkingRegistryRepository.findOneByLicensePlateNumberAndOutIsNull(licensePlateNumber)
-                                                .orElseThrow(() -> new NoSuchRegistryException(NoParkingSlotAvailableException.MSG));
+                                                .orElseThrow(() -> new NoSuchRegistryException(NoSuchRegistryException.MSG));
 
         registry.setOut(LocalDateTime.now());
         registry.setTotalAmount(parkingRatePolicyProvider.calculateTotal(registry));
