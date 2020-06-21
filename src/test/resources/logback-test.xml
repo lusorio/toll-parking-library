@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <!-- default logging pattern -->
+    <property name="defaultTimestampPattern" value="yyyy-MM-dd'T'HH:mm:ss.SSS"/>
+    <property name="defaultLogPattern"
+              value="%d{yyyy-MM-dd'T'HH:mm:ss.SSS} | %thread | %-5level | %logger{36} | %msg%n"/>
+
+    <!-- Standard logging -->
+    <appender name="StdConsole" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${defaultLogPattern}</pattern>
+        </encoder>
+    </appender>
+
+    <appender name="StdFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${catalina.base:-.}/logs/tpl.std.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- Rolled file pattern, daily and monthly -->
+            <fileNamePattern>${catalina.base:-.}/logs/%d{yyyy-MM}/tpl.%d{dd}.std.gz</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${defaultLogPattern}</pattern>
+        </encoder>
+    </appender>
+
+    <!-- JSON logging -->
+    <appender name="JSONConsole" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+            <layout class="ch.qos.logback.contrib.json.classic.JsonLayout">
+                <timestampFormat>${defaultTimestampPattern}</timestampFormat>
+                <appendLineSeparator>true</appendLineSeparator>
+                <jsonFormatter class="ch.qos.logback.contrib.jackson.JacksonJsonFormatter">
+                    <prettyPrint>false</prettyPrint>
+                </jsonFormatter>
+            </layout>
+        </encoder>
+    </appender>
+
+    <appender name="JSONFile" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${catalina.base:-.}/logs/tpl.json.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- Rolled file pattern, daily and monthly -->
+            <fileNamePattern>${catalina.base:-.}/logs/%d{yyyy-MM}/tpl.%d{dd}.json.gz</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+        <encoder class="ch.qos.logback.core.encoder.LayoutWrappingEncoder">
+            <layout class="ch.qos.logback.contrib.json.classic.JsonLayout">
+                <timestampFormat>${defaultTimestampPattern}</timestampFormat>
+                <appendLineSeparator>true</appendLineSeparator>
+                <jsonFormatter class="ch.qos.logback.contrib.jackson.JacksonJsonFormatter">
+                    <prettyPrint>false</prettyPrint>
+                </jsonFormatter>
+            </layout>
+        </encoder>
+    </appender>
+
+    <!-- Fallback logging policy. Log in file with WARN level -->
+    <root level="warn">
+        <appender-ref ref="StdConsole"/>
+        <!--        <appender-ref ref="StdFile"/>-->
+        <!--        <appender-ref ref="JSONConsole"/>-->
+        <!--        <appender-ref ref="JSONFile"/>-->
+    </root>
+</configuration>
