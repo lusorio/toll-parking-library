@@ -66,6 +66,10 @@ A toll parking lor provides several types of parking slots to its users. It has 
  
  A configuration file [application.properties](https://github.com/lusorio/toll-parking-library/blob/master/src/main/resources/application.properties) is provided in the src/main/resources directory.
  
+ #### Parking slots
+ 
+ An example dataset is provided in [data.sql](https://github.com/lusorio/toll-parking-library/blob/master/src/main/resources/data.sql) which contains a list of existing parking slots.
+ 
  #### Parking rate policy
  
  In order to configure the parking rate policy por a given parking lot, change the value of the property ``tpl.ratepolicy.type`` to the desired one. Current implementations are:

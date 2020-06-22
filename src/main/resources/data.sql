@@ -8,6 +8,3 @@ VALUES ('1', 'COMBUSTION', 'C1', false),
     ('7', 'ELECTRIC_50KW', 'E501', true),
     ('8', 'ELECTRIC_50KW', 'E502', true),
     ('9', 'ELECTRIC_50KW', 'E503', true);
-
-INSERT INTO parking_registry (id, license_plate_number, slot_id, datetime_in)
-VALUES ('99', 'AA-111-AA', '1', CURRENT_TIMESTAMP);

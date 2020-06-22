@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.junit.jupiter.api.Assertions.assertAll;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 class IParkingRegistryRepositoryTest extends AbstractTest
 {
@@ -17,7 +17,6 @@ class IParkingRegistryRepositoryTest extends AbstractTest
     void findOneByLicensePlateNumberAndOutIsNull_Error()
     {
         assertAll(
-                () -> assertTrue(repository.findOneByLicensePlateNumberAndOutIsNull("AA-111-AA").isPresent()),
-                () -> assertTrue(repository.findOneByLicensePlateNumberAndOutIsNull("BB-999-ZZ").isEmpty()));
+                () -> assertFalse(repository.findOneByLicensePlateNumberAndOutIsNull("AA-111-AA").isPresent()));
     }
 }
